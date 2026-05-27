@@ -69,4 +69,6 @@ npm install
 npm run dev
 ```
 *   **Web Application URL:** `http://localhost:5173`
-```
+
+---
+
