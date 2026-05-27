@@ -1,12 +1,19 @@
 from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, ForeignKey
 from sqlalchemy.orm import declarative_base, sessionmaker
 import datetime
+import os
+from dotenv import load_dotenv
 
-# 1. Create the SQLite Database File
-SQLALCHEMY_DATABASE_URL = "sqlite:///./aeropulse.db"
+# 1. Load the hidden database URL
+load_dotenv()
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 
-# connect_args={"check_same_thread": False} is required for SQLite in FastAPI
-engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
+if not SQLALCHEMY_DATABASE_URL:
+    print("ERROR: DATABASE_URL not found in .env")
+    exit()
+
+# 2. Connect to the Cloud (Notice we removed the SQLite-specific connect_args)
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
