@@ -2,8 +2,6 @@
 backend/venv/
 __pycache__/
 *.db
-*.pkl
-*.joblib
 
 # Node
 frontend/node_modules/
