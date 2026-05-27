@@ -23,7 +23,7 @@ function App() {
     setRetrainAlert(false);
 
     try {
-      const response = await axios.post("https://aeropulse-api.onrender.com", {
+      const response = await axios.post("https://aeropulse-api.onrender.com/api/inspect", {
         aircraft_id: aircraftId,
         flight_hours: parseFloat(flightHours),
         avg_operating_temp: parseFloat(temp),
